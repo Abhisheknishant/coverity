@@ -3,7 +3,9 @@ language: cpp
 # These linux-specific parameters could be moved into matrix.include items, but that's lots of repetition
 sudo: required
 dist: bionic
-arch: amd64
+arch:
+    - amd64
+    - arm64
 services:
     - docker
 
