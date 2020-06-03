@@ -34,24 +34,36 @@ matrix:
           compiler: gcc
           env: BUILD_TYPE=normal BUILD_WITH=cmake
           arch: arm64
-        - os: osx
-          osx_image: xcode9.3 # macOS 10.13
-          compiler: clang
-          env: BUILD_TYPE=normal BUILD_WITH=cmake
-        - os: osx
-          osx_image: xcode9.3 # macOS 10.13
-          compiler: clang
+        - os: linux
+          arch: arm64
+          compiler: gcc
           env: BUILD_TYPE=normal BUILD_WITH=autoconf
+        - os: linux
+          arch: arm64
+          compiler: clang
+          env: BUILD_TYPE=asan BUILD_WITH=cmake
+        - os: linux
+          arch: arm64
+          compiler: clang
+          env: BUILD_TYPE=tsan BUILD_WITH=cmake
         - os: linux
           compiler: gcc
           env: BUILD_TYPE=tarball BUILD_WITH=cmake
         - os: linux
           compiler: gcc
           env: BUILD_TYPE=tarball BUILD_WITH=autoconf
+        - os: linux
+          arch: arm64
+          compiler: gcc
+          env: BUILD_TYPE=tarball BUILD_WITH=cmake
+        - os: linux
+          arch: arm64
+          compiler: gcc
+          env: BUILD_TYPE=tarball BUILD_WITH=autoconf
         - stage: deploy
           os: linux
           env:
-              # SECRET_KEY, used to push docs to github and to init coverity scans
+             # SECRET_KEY, used to push docs to github and to init coverity scans
             - secure: "ne14MIcNsUNKjqtgrLHJTHXCUUMKfkV/o4sm2scWYOiIl8s1Hoqnx6mPYIr8qnedIra8fsI7sWVxXLDLd/KMTN9v9WpCwc6Sf45vYtkfrS+rNOr86wOeEbgaxDTsb2UDJhtK0InhhpkipA5jrFzQuMMMEB+JgBQltKV43wmd7Yc="
           before_install:
           install:
@@ -74,6 +86,7 @@ matrix:
           after_success:
         - stage: deploy
           os: linux
+          arch: arm64
           env:
               # DOCKER_USERNAME
             - secure: "kiR372QH5Srye2beHVamOVLIPeXnDipWfzvzGJEZzbpH+aXsiD+CkbtulCR+XnKpnUAXQTmEc5ts1KjI9MGlxvP1ztxW8HMDGUMF4iFAjgZO8GyAZlH5I7pMEw7D5pn3W9y1LuCW5C9IsDcWnNTJkm32D7N34lLBCTQVw68ooDk="
